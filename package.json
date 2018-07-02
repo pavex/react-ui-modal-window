@@ -1,0 +1,25 @@
+{
+  "name": "react-ui-modal-window",
+  "version": "1.0.0",
+  "description": "Blank modal window for React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavex/react-ui-modal-window.git"
+  },
+  "keywords": [
+    "modal",
+    "window",
+    "react",
+    "ui"
+  ],
+  "author": "Pavel Macháček <pavex@ines.cz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pavex/react-ui-modal-window/issues"
+  },
+  "homepage": "https://github.com/pavex/react-ui-modal-window#readme"
+}
