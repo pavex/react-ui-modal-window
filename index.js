@@ -7,12 +7,11 @@ export default class ModalWindow extends Component {
 
 
 	static propTypes = {
-		id: PropTypes.string,
 		visible: PropTypes.bool,
-		width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-		height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 		fullsize: PropTypes.bool,
-		className: PropTypes.string
+		className: PropTypes.string,
+		onClose: PropTypes.func,
+		onUnmount: PropTypes.func
 	};
 
 
@@ -20,11 +19,8 @@ export default class ModalWindow extends Component {
 
 
 	static defaultProps = {
-		id: null,
 		visible: false,
-		fullsize: false,
-		width: '60%',
-		height: 'auto'
+		fullsize: false
 	};
 
 
@@ -32,8 +28,7 @@ export default class ModalWindow extends Component {
 
 
 	state = {
-		visible: false,
-		allowRender: false
+		visible: false
 	};
 
 
@@ -47,19 +42,32 @@ export default class ModalWindow extends Component {
 
 
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.visible !== this.props.visible) {
-			if (nextProps.visible === true) {
-				this.setState({allowRender: true}, () => {
-					this.setState({visible: true});
-				});
+	componentDidMount() {
+// Show modal window fx helper
+		setTimeout(() => {
+			this.setState({visible: true});
+		}, 0);
+	};
+
+
+
+
+
+	close(callback) {
+// Hide modal window fx helper
+		this.setState({visible: false}, () => {
+			if (this.props.onClose) {
+				this.props.onClose.call(this);
 			}
-			else {
-				this.setState({visible: false}, () => {
-					setTimeout(() => {this.setState({allowRender: false})}, 200)
-				});
+			if (callback) {
+				setTimeout(() => {
+					callback.call(this);
+					if (this.props.onUnmount) {
+						this.props.onUnmount.call(this);
+					}
+				}, 200);
 			}
-		}
+		});
 	};
 
 
@@ -67,22 +75,16 @@ export default class ModalWindow extends Component {
 
 
 	render() {
-		if (!this.state.allowRender) {
-			return null;
-		}
 		let className = this._cssClassName
 			+ (this.state.visible ? ' ' + this._cssClassName + '--visible' : '')
 			+ (this.props.fullsize ? ' ' + this._cssClassName + '--fullsize' : '')
 			+ (this.props.className ? ' ' + this.props.className : '');
 		
-		let {id, width, height, fullsize} = this.props;
 		return (
-			<div className={className} id={id}>
+			<div className={className}>
 				<div className={this._cssClassName + '__backdrop'}>
 					<div className={this._cssClassName + '__window-container'}>
-						<div className={this._cssClassName + '__window'} style={{width, height}}>
-							{this.props.children}
-						</div>
+						{this.props.children}
 					</div>
 				</div>
 			</div>
