@@ -1,6 +1,6 @@
 {
   "name": "pavex-react-ui-modal-window",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Blank modal window for React",
   "main": "index.js",
   "scripts": {
