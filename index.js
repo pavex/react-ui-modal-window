@@ -10,8 +10,8 @@ export default class ModalWindow extends Component {
 		visible: PropTypes.bool,
 		fullsize: PropTypes.bool,
 		className: PropTypes.string,
-		onClose: PropTypes.func,
-		onUnmount: PropTypes.func
+//		onClose: PropTypes.func,
+//		onUnmount: PropTypes.func
 	};
 
 
@@ -56,15 +56,15 @@ export default class ModalWindow extends Component {
 	close(callback) {
 // Hide modal window fx helper
 		this.setState({visible: false}, () => {
-			if (this.props.onClose) {
-				this.props.onClose.call(this);
-			}
+//			if (this.props.onClose) {
+//				this.props.onClose.call(this);
+//			}
 			if (callback) {
 				setTimeout(() => {
 					callback.call(this);
-					if (this.props.onUnmount) {
-						this.props.onUnmount.call(this);
-					}
+//					if (this.props.onUnmount) {
+//						this.props.onUnmount.call(this);
+//					}
 				}, 200);
 			}
 		});

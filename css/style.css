@@ -1,8 +1,8 @@
-.ui-modal-window {
+.ui-modal-window .ui-modal-window__window-container {
 	opacity:0;
 	transition:opacity 200ms 0ms cubic-bezier(0, 0, 0.2, 1);
 }
-.ui-modal-window--visible {
+.ui-modal-window--visible .ui-modal-window__window-container {
 	opacity:1;
 }
 .ui-modal-window__backdrop {
@@ -24,7 +24,7 @@
 	display:inline-table;
 	width:50%; /* default width */
 	height:auto; /* default height */
-	/*margin-top:3%;*/
+	/*margin-top:3%;/**/
 	transition:margin 200ms 0ms cubic-bezier(0, 0, 0.2, 1);
 	background-color:Window;
 	text-align:left;
